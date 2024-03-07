@@ -198,14 +198,21 @@ add_action( "rest_api_init", function(){
 } );
 
 function get_leads_list($data){
-	// $events = LeadsController::GetLeadsList();
-	// return $events;
+
 	$first_name = $_POST['first_name'];
 	$last_name = $_POST['last_name'];
 	$phone_number = $_POST['phone_number'];
 	$event_id = $_POST['event_id'];
+
 	$lead = new LeadSaveDTO('0', $first_name, $last_name, $phone_number, array($event_id));
+
 	LeadsController::SaveLead($lead);
+	
+	return new WP_REST_Response(
+		array(
+		  'status' => '200',
+		)
+	);
 
 }
 

@@ -16,7 +16,7 @@ class LeadsRepository {
     public static function SaveLead($leadDTO){
         $id = self::ExistsByPhoneNumber($leadDTO);
 
-        var_dump(wp_insert_post( array(
+        wp_insert_post( array(
             'ID' => $id,
             'post_type' => 'lead',
             'post_status' => 'publish',
@@ -27,7 +27,7 @@ class LeadsRepository {
                 'phone_number' => $leadDTO->phone_number,
                 'events' => $leadDTO->events
             )
-        ) ));
+        ));
     }
 
     private static function ParseLeads($leads) {

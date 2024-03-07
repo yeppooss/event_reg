@@ -30,9 +30,16 @@ jQuery(document).ready(function($){
             return obj;
         }, {});
 
-        $.post(`${window.location.href}/wp-json/registration/v1/leads`, data, (res) => {
-            console.log(res)
-        })
+        $.ajax({
+            url: `${window.location.href}/wp-json/registration/v1/leads`,
+            method: 'post',
+            dataType: 'json',
+            data: data,
+            success: function(data){
+                MicroModal.close('modal-1');
+            }
+        });
+
     })
     
 });
